@@ -1,0 +1,2 @@
+users["admin@kaplanner.test"]=user("admin", "", "admin@kaplanner.test", "admin123")
+users["g"]=user("g", "g", "g", "g")

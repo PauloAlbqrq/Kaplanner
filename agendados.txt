@@ -1,0 +1,4 @@
+agendamentos.append(agendamento("23-09-2022", "00:00", user("admin", "", "admin@kaplanner.test", "admin123"), ['evento("Todo", "esse compromisso só aparece no todo", "10-10-2022", "12:00")']))
+agendamentos.append(agendamento("23-09-2022", "00:01", user("admin", "", "admin@kaplanner.test", "admin123"), ['tarefa("mês", "esse compromisso só aparece em mês+", "26-09-2022", "12:00", "1")']))
+agendamentos.append(agendamento("23-09-2022", "00:05", user("admin", "", "admin@kaplanner.test", "admin123"), ['meta("semana", "esse compromisso aparece somente em semana+", "24-09-2022", "NC")']))
+agendamentos.append(agendamento("23-09-2022", "15:28", user("Paulo", "Ximenes", "paulo@gmail.com", "12345"), ['evento("Aula", "Aula hoje às 11:00", "23-09-2022", "11:00")']))
