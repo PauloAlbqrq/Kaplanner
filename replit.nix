@@ -1,5 +1,7 @@
 { pkgs }: {
   deps = [
+    pkgs.mysql80
+    pkgs.sqlite.bin
     pkgs.nano
     pkgs.python38Full
   ];
