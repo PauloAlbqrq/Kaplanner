@@ -1,5 +1,6 @@
 from tkinter import *
 from customtkinter import *
+from constantes import *
 
 
 root=Tk()
