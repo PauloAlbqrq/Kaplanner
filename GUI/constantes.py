@@ -6,6 +6,7 @@ dia = datetime.datetime.now().strftime('%d')
 cor_bg='#0f0c24'
 cor_fg1='#e2daf8'
 cor_fg2='#686295'
+cor_disable='#a7a0ba'
 
 def debug_win():
     root=Tk()
