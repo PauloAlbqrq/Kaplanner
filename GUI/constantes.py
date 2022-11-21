@@ -1,6 +1,7 @@
 from tkinter import *
 from customtkinter import *
 import datetime
+import os
 
 dia = datetime.datetime.now().strftime('%d')
 cor_bg='#0f0c24'
