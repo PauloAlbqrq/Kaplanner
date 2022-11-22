@@ -45,7 +45,7 @@ def ins_lista_agend():
 
     def pack_comp():
         bloco_comp = Frame(lista_esq, bg=cor_fg2, height=60)
-        bloco_comp.pack(fill='x', anchor=N)
+        bloco_comp.pack(fill='x', anchor=N, pady=15)
         date = Label(bloco_comp, text='32/13:',
                      font=('Fira Code', 13), bg=cor_fg2, fg='white')
         date.place(relx=0.05, rely=0.3, anchor=W)
