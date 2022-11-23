@@ -11,7 +11,10 @@ cor_disable='#a7a0ba'
 
 def debug_win():
     root=Tk()
-    root.iconbitmap(f'assets/icones_dias/{dia}.ico')
+    try:
+        root.iconbitmap(f'assets/icones_dias/{dia}.ico')
+    except:
+        pass
     root.geometry('1280x720')
     root.configure(bg=cor_bg)
     return root

@@ -71,6 +71,7 @@ def ins_lista_agend():
 
     for x in range(50):
         pack_comp()
+
     scroll_lista = CTkScrollbar(
         lado_esq, scrollbar_color=cor_disable, fg_color=cor_fg1, orientation=VERTICAL, command=lista_canvas.yview)
     scroll_lista.pack(side=RIGHT, fill=Y)
