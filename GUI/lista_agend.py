@@ -34,7 +34,7 @@ def ins_lista_agend():
                    showweeknumbers=False, font=('Fira Code', 15), selectbackground=cor_fg2,
                    weekendbackground=cor_fg1, weekendforeground='black', othermonthbackground=cor_disable,
                    othermonthforeground=cor_fg2, othermonthwebackground=cor_disable, othermonthweforeground=cor_fg2,
-                   )
+                   date_pattern='y-mm-dd')
     calendario.grid(column=1, row=0, sticky=NSEW, padx=20, pady=50)
 
 
@@ -55,8 +55,16 @@ def ins_lista_agend():
     frame_comp.pack(fill=BOTH, expand=1)
 
     def atualizar_comp(e):
-        frame_comp.destroy()
+        data_cal=calendario.selection_get()
+        for y in frame_comp.winfo_children():
+            y.destroy()
         print(calendario.selection_get())
+
+        conexao_comp=conectar_db()
+        for x in (buscar_dados(conexao_comp, f"select * from evento where data_evento = '{data_cal}';")+buscar_dados(conexao_comp, f"select * from meta where prazo = '{data_cal}';")+buscar_dados(conexao_comp, f"select * from tarefa where data_tarefa = '{data_cal}';")):
+            nome_comp2=buscar_dados(conexao_comp, f"select * from compromisso where id_compromisso = {x[-1]}")[0][1]
+            pack_comp(nome_comp2, x[0])
+        desconectar_db(conexao_comp)
 
     calendario.bind('<<CalendarSelected>>', atualizar_comp)
 
@@ -92,6 +100,7 @@ def ins_lista_agend():
     for x in (buscar_dados(conexao_comp, "select * from evento")+buscar_dados(conexao_comp, "select * from meta")+buscar_dados(conexao_comp, "select * from tarefa")):
         nome_comp=buscar_dados(conexao_comp, f"select * from compromisso where id_compromisso = {x[-1]}")[0][1]
         pack_comp(nome_comp, x[0])
+    desconectar_db(conexao_comp)
         
 
     scroll_lista = CTkScrollbar(
