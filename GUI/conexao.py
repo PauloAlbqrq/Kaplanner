@@ -11,7 +11,22 @@ def conectar_db():
         print(f"Erro ao conectar ao banco de dados:\n{error}")
     return conexao
 
+
 def desconectar_db(conexao):
     if conexao:
         conexao.close()
-    
+
+
+def buscar_dados(conexo, busca):
+    busca_q = None
+    try:
+        cursor = conexo.cursor()
+        cursor.execute(busca)
+        busca_q = cursor.fetchall()
+    except sqlite3.Error as error:
+        print(error)
+    finally:
+        return busca_q
+
+
+
