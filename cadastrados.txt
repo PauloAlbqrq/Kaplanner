@@ -1,2 +1,0 @@
-users["admin@kaplanner.test"]=user("admin", "", "admin@kaplanner.test", "admin123")
-
