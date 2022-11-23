@@ -30,10 +30,10 @@ d1 = Label(tela, image=se, bg=roxo)
 d1.place(width=160, height=160, x=1, y=0.5)
 
 d2 = Label(tela, image=sd, bg=roxo)
-d2.place(x=726, y=2)
+d2.place(x=715, y=2)
 
 d3 = Label(tela, image=ine, bg=roxo)
-d3.place(x=1, y=332)
+d3.place(width=160, x=1, y=332)
 
 d4 = Label(tela, image=ind, bg=roxo)
 d4.place(x=726,y=350)
