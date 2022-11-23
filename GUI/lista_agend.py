@@ -26,13 +26,17 @@ def ins_lista_agend():
     agend_scr.columnconfigure(1, weight=1)
     agend_scr.rowconfigure(0, weight=1)
 
-    cal = Calendar(agend_scr, background=cor_fg2, disabledbackground="black", bordercolor="black",
+    #sel_cal=StringVar('2022-11-23')
+
+    calendario = Calendar(agend_scr, background=cor_fg2, disabledbackground="black", bordercolor="black",
                    headersbackground="black", normalbackground=cor_fg1, foreground='white',
                    normalforeground='black', headersforeground='white', firstweekday='sunday',
                    showweeknumbers=False, font=('Fira Code', 15), selectbackground=cor_fg2,
                    weekendbackground=cor_fg1, weekendforeground='black', othermonthbackground=cor_disable,
-                   othermonthforeground=cor_fg2, othermonthwebackground=cor_disable, othermonthweforeground=cor_fg2,)
-    cal.grid(column=1, row=0, sticky=NSEW, padx=20, pady=50)
+                   othermonthforeground=cor_fg2, othermonthwebackground=cor_disable, othermonthweforeground=cor_fg2,
+                   )
+    calendario.grid(column=1, row=0, sticky=NSEW, padx=20, pady=50)
+
 
     add_agd = Frame(lista_esq, bg=cor_fg2, height=60)
     add_agd.pack(fill='x')
@@ -49,6 +53,13 @@ def ins_lista_agend():
 
     frame_comp=Frame(lista_esq, bg=cor_fg2)
     frame_comp.pack(fill=BOTH, expand=1)
+
+    def atualizar_comp(e):
+        frame_comp.destroy()
+        print(calendario.selection_get())
+
+    calendario.bind('<<CalendarSelected>>', atualizar_comp)
+
 
     def pack_comp(nome_comp, data_comp):
         bloco_comp = Frame(frame_comp, bg=cor_fg2, height=60)
