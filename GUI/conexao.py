@@ -30,12 +30,12 @@ def buscar_dados(conexo, busca):
         return busca_q'''
 
 def manipular_dados(conexao, comando):
-    try:
-        cursor=conexao.cursor()
-        cursor.execute(comando)
-        conexao.commit()
-    except sqlite3.Error as error:
-        print(f'erro: {error}')
-        
-        
+    #try:
+    cursor=conexao.cursor()
+    cursor.execute(comando)
+    conexao.commit()
+    #except sqlite3.Error as error:
+        #print(f'erro: {error}')
+
+
 
