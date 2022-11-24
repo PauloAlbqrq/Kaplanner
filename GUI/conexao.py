@@ -36,6 +36,6 @@ def manipular_dados(conexao, comando):
         conexao.commit()
     except sqlite3.Error as error:
         print(f'erro: {error}')
-
-
+        
+        
 

@@ -4,6 +4,9 @@ import tkinter.ttk as ttk
 import tkinter.messagebox as tkMessageBox
 from tkinter import *
 from PIL import ImageTk
+from conexao import *
+
+
 
 # DEFININDO AS VARIAVÉIS DAS CORES:
 branco = '#FFFFFF'
@@ -70,7 +73,6 @@ def mask1():
   senha_ent1.configure(show='*')
   botao_olho1.config(command=exibir_senha1)
 
-
   
 
 #COMANDO DO BOTÃO 'CADASTRAR':
@@ -79,10 +81,14 @@ def cadastrar_user():
   sobrenome_info = sobrenome.get()
   email_info = email.get()
   senha_info = senha.get()
+
+  conexao_cad=conectar_db()
+  manipular_dados(conexao_cad, f"""insert into usuario(nome, sobrenome, email, senha) values('{nomeuser_info}', '{sobrenome_info}', '{email_info}', '{senha_info}')""")
+  desconectar_db(conexao_cad)
   
-  cads = open('cadastros.txt','w')
+  '''cads = open('cadastros.txt','w')
   cads.write(f'{nomeuser_info}, {sobrenome_info}, {email_info}, {senha_info}')
-  cads.close()
+  cads.close()'''
 
   
   
