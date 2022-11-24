@@ -5,12 +5,14 @@ from tkcalendar import Calendar
 from PIL import Image, ImageTk
 from GUI.conexao import *
 from tkinter import messagebox
+from GUI.criar_agendamento import *
 
 '''root = debug_win()
 root.title(os.path.basename(__file__))'''
 
 
 def ins_lista_agend(root):
+    pri_sel=False
     agend_scr = Frame(root, bg=cor_bg, width=20, height=20)
     agend_scr.pack(fill=BOTH, expand=1)
 
@@ -45,7 +47,7 @@ def ins_lista_agend(root):
         agend_scr.destroy()
 
     plus_btn = CTkButton(add_agd, text='+', border_width=3, width=35, height=35, border_color='white',
-                         fg_color=cor_fg2, text_font=('Fira Code Bold', 15), hover_color=cor_disable, command=auto_destruir)
+                         fg_color=cor_fg2, text_font=('Fira Code Bold', 15), hover_color=cor_disable, command=chamar_evento)
     plus_btn.place(rely=0.5, relx=0.1, anchor=CENTER)
     texto_add = Label(add_agd, text='Adicionar compromisso',
                       font=('Fira Code', 11), fg='white', bg=cor_fg2)
