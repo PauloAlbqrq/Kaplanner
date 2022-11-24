@@ -16,11 +16,11 @@ tela.config(bg = roxo)
 tela.resizable(width=True,height=True)
 
 #IMAGENS:
-icon = PhotoImage(file='imagens\\icon.png')
-se = PhotoImage(file='imagens\\se.png') #d1: Superior - Esquerda
-sd = PhotoImage(file='imagens\\sd.png') #d2: Superior - Direita
-ine = PhotoImage(file='imagens\\ine.png') #d3: Inferior - Esquerda
-ind = PhotoImage(file='imagens\\ind.png') #d4: Inferior - Direita
+icon = PhotoImage(file='GUI/imagens_telas/icon.png')
+se = PhotoImage(file='GUI/imagens_telas/se.png') #d1: Superior - Esquerda
+sd = PhotoImage(file='GUI/imagens_telas/sd.png') #d2: Superior - Direita
+ine = PhotoImage(file='GUI/imagens_telas/ine.png') #d3: Inferior - Esquerda
+ind = PhotoImage(file='GUI/imagens_telas/ind.png') #d4: Inferior - Direita
 
 
 
