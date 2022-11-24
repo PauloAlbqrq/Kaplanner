@@ -4,8 +4,9 @@ import tkinter.ttk as ttk
 import tkinter.messagebox as tkMessageBox
 from tkinter import *
 from PIL import ImageTk
-from conexao import *
-
+from GUI.conexao import *
+from tkinter import messagebox
+from GUI.lista_agend import *
 
 
 # DEFININDO AS VARIAVÉIS DAS CORES:
@@ -209,6 +210,9 @@ def tela_cadastro():
   button_possui=CTkButton(dados, text='Login',text_font=('Fira Code', 14),border_width=0, fg_color=roxo, text_color=azul,bg_color=roxo, width=30, height=30, command=tela_login)
   button_possui.place(x=250, y=594)
   
+    
+  
+
   
   
 #FUNÇÃO LOGIN:
@@ -268,7 +272,21 @@ def tela_login():
   botao_olho.place(x=360, y=290)
   
   #Botão que realiza o login do usuário:
-  button_log1 = CTkButton(dados1, text='ENTRAR',text_font=('Fira Code', 14),border_width=1, border_color=lilas2, fg_color=roxo, text_color=branco,bg_color=roxo, width=30, height=30) #command=lambda:) #O botão "CADASTRAR" recebe dois comando, o de cadastrar o usuário no bd e enviar o usuário para a tela de login.
+  def logar_fn():
+    email_l=email_ent.get()
+    senha_l=senha_ent.get()
+    
+    conexao_log = conectar_db()
+    try:
+      senha_query=buscar_dados(conexao_log, f"""select senha from usuario where email='{email_l}'""")[0][0]
+    except:
+      messagebox.showinfo('erro', 'email não cadastrado')
+    
+    if senha_l==senha_query:
+      log_scr.destroy()
+      ins_lista_agend(tela)
+  
+  button_log1 = CTkButton(dados1, text='ENTRAR',text_font=('Fira Code', 14),border_width=1, border_color=lilas2, fg_color=roxo, text_color=branco,bg_color=roxo, width=30, height=30, command=logar_fn) #O botão "CADASTRAR" recebe dois comando, o de cadastrar o usuário no bd e enviar o usuário para a tela de login.
   button_log1.pack(anchor=CENTER)
   
   botao_olho1 = Button(dados1, image=closeeye, bd=0, bg=lilas, activebackground=lilas, cursor='hand2', command=exibir_senha1)
