@@ -96,6 +96,10 @@ def tela_evento(top):
                                                 ('{calendario_agd.selection_get()}', '{entry_hora.get()}', {ultimo_comp});""")
             desconectar_db(conexao_evento)
             top.destroy()
+        else:
+            messagebox.showinfo(
+                'erro', 'Você inseriu uma data já passada.')
+            top.focus_force()
 
     def fn_cancelar():
         top.destroy()
@@ -189,6 +193,11 @@ def tela_meta(top):
                                                 ('{calendario_agd.selection_get()}', {ultimo_comp});""")
             desconectar_db(conexao_evento)
             top.destroy()
+        else:
+            messagebox.showinfo(
+                'erro', 'Você inseriu uma data já passada.')
+            top.focus_force()
+
         
     def fn_cancelar():
         top.destroy()
@@ -289,6 +298,11 @@ def tela_tarefa(top):
                                                 ('{calendario_agd.selection_get()}', '{entry_hora.get()}', {ultimo_comp});""")
             desconectar_db(conexao_evento)
             top.destroy()
+        else:
+            messagebox.showinfo(
+                'erro', 'Você inseriu uma data já passada.')
+            top.focus_force()
+
 
     def fn_cancelar():
         top.destroy()
