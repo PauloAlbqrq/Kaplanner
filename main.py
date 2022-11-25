@@ -7,6 +7,7 @@ from PIL import ImageTk
 from GUI.conexao import *
 from tkinter import messagebox
 from GUI.lista_agend import *
+import erros
 
 
 # DEFININDO AS VARIAVÉIS DAS CORES:
@@ -78,7 +79,6 @@ def mask1():
   senha_ent1.configure(show='*')
   botao_olho1.config(command=exibir_senha1)
 
-  
 
 #COMANDO DO BOTÃO 'CADASTRAR':
 def cadastrar_user():
@@ -93,13 +93,13 @@ def cadastrar_user():
     tela_login()
   else:
     messagebox.showinfo('erro', 'Email inválido')
+    raise erros.Email_Invalido('Email inserido não possui @')
   desconectar_db(conexao_cad)
   
   '''cads = open('cadastros.txt','w')
   cads.write(f'{nomeuser_info}, {sobrenome_info}, {email_info}, {senha_info}')
   cads.close()'''
 
-  
   
 #FUNÇÃO CADASTRO:
 def tela_cadastro():
@@ -225,22 +225,28 @@ def tela_cadastro():
   
 #FUNÇÃO LOGIN:
 def tela_login():
+  #GLOBALIZANDO AS VARIÁVEIS
   global senha_ent1
   global botao_olho1
-      
+  
+  #DEFININDO FRAMES DA TELA DE LOGIN    
   log_scr = Frame(tela, bg=roxo)
   log_scr.pack(fill='both', expand=1)
+  
+  #ESSA FUNÇÃO POSICIONA OS DETALHES DA TELA (foi criada pois estava dando erro na exibição quando era atualizada a tela)
   posicionando()
+  
+  #FRAME PARA ADICIONAR AS LABELS E AS ENTRYS NA TELA DE LOGIN: (não era necesário criar esse frame, mas foi por uma escolha estética, já que não estava ficando centralizado quando redimensionava a tela) 
   dados1 = Frame(log_scr, bg=roxo)
   dados1.place(relx=0.5, rely=0.37, anchor=CENTER)
   
-  
+  #INSERINDO ICONE, LABELS, ENTRYS E BOTÕES NA TELA:
   icone = Label(dados1, image=icon, bg=roxo)
   icone.pack(pady=40)
-  
   l1 = Label(dados1, image=linp, bg=roxo)
   l1.place(relx=0.64, rely=0.19, anchor=NW)
 
+  #FUNÇÃO DO BOTÃO "CADASTRO" QUE MUDA O FRAME:
   def logtocad():
     log_scr.destroy()
     tela_cadastro()
@@ -284,6 +290,7 @@ def tela_login():
     email_l=email_ent.get()
     senha_l=senha_ent.get()
     
+    #CONEXÃO COM BANCO DE DADOS:
     conexao_log = conectar_db()
     try:
       senha_query=buscar_dados(conexao_log, f"""select senha from usuario where email='{email_l}'""")[0][0]
@@ -294,9 +301,11 @@ def tela_login():
       log_scr.destroy()
       ins_lista_agend(tela)
   
-  button_log1 = CTkButton(dados1, text='ENTRAR',text_font=('Fira Code', 14),border_width=1, border_color=lilas2, fg_color=roxo, text_color=branco,bg_color=roxo, width=30, height=30, command=logar_fn) #O botão "CADASTRAR" recebe dois comando, o de cadastrar o usuário no bd e enviar o usuário para a tela de login.
+  
+  button_log1 = CTkButton(dados1, text='ENTRAR',text_font=('Fira Code', 14),border_width=1, border_color=lilas2, fg_color=roxo, text_color=branco,bg_color=roxo, width=30, height=30, command=logar_fn)
   button_log1.pack(anchor=CENTER)
   
+  #OLHINO QUE EXIBE OU ESCONDE A SENHA NA TELA:
   botao_olho1 = Button(dados1, image=closeeye, bd=0, bg=lilas, activebackground=lilas, cursor='hand2', command=exibir_senha1)
   botao_olho1.place(x=360, y=290)
   
@@ -319,7 +328,7 @@ def tela_login():
   button_npossui.place(x=232, y=425)
   
   #Botão "esqueceu sua senha?" que direciona o usuário para a recuperação de senha:
-  button_esqueceu=CTkButton(dados1, text='Esqueceu sua senha?',text_font=('Fira Code', 14),border_width=0, fg_color=roxo, text_color=azul,bg_color=roxo, width=30, height=30)
+  button_esqueceu=CTkButton(dados1, text='Esqueceu sua senha?',text_font=('Fira Code', 14),border_width=0, fg_color=roxo, text_color=azul,bg_color=roxo, width=30, height=30, command=recup_senha)
   button_esqueceu.place(x=90, y=460)
   
   

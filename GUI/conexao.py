@@ -19,23 +19,22 @@ def desconectar_db(conexao):
 
 def buscar_dados(conexo, busca):
     busca_q = None
-    #try:
-    cursor = conexo.cursor()
-    cursor.execute(busca)
-    busca_q = cursor.fetchall()
-    return busca_q
-    '''except sqlite3.Error as error:
+    try:
+        cursor = conexo.cursor()
+        cursor.execute(busca)
+        busca_q = cursor.fetchall()
+    except sqlite3.Error as error:
         print(error)
     finally:
-        return busca_q'''
+        return busca_q
 
 def manipular_dados(conexao, comando):
-    #try:
-    cursor=conexao.cursor()
-    cursor.execute(comando)
-    conexao.commit()
-    #except sqlite3.Error as error:
-        #print(f'erro: {error}')
+    try:
+        cursor=conexao.cursor()
+        cursor.execute(comando)
+        conexao.commit()
+    except sqlite3.Error as error:
+        print(f'erro: {error}')
 
 
 
